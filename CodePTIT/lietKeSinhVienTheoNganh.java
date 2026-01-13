@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+
+class SinhVien{
+    public String ma, ten, lop, email;
+    public SinhVien(String ma, String ten, String lop, String email){
+        this.ma = ma;
+        this.ten = ten;
+        this.lop = lop;
+        this.email = email;
+    }
+    public String toString(){
+        return this.ma + " " + this.ten + " " + this.lop + " " + this.email;
+    }
+}
+
+public class lietKeSinhVienTheoNganh {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<SinhVien> arr = new ArrayList<>();
+        int n = sc.nextInt();
+        sc.nextLine();
+        while (n-- > 0){
+            arr.add(new SinhVien(sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine()));
+        }
+        int q = sc.nextInt();
+        sc.nextLine();
+        while (q-- > 0){
+            String nganh = sc.nextLine().toUpperCase();
+            System.out.println("DANH SACH SINH VIEN NGANH " + nganh + ":");
+            String res = "";
+            if (nganh.equals("KE TOAN")) res = "DCKT";
+            if (nganh.equals("CONG NGHE THONG TIN")) res = "DCCN";
+            if (nganh.equals("AN TOAN THONG TIN")) res = "DCAT";
+            if (nganh.equals("DIEN TU")) res = "DCDT";
+            if (nganh.equals("VIEN THONG")) res = "DCVT";
+            for (SinhVien x : arr){
+                if (x.ma.substring(3, 7).equals(res)){
+                    if ((res.equals("DCCN") || res.equals("DCAT")) && x.lop.charAt(0) == 'E'){
+                        continue;
+                    }
+                    System.out.println(x);
+                }
+            }
+        }
+    }
+}
+// 4
+// B16DCCN011
+// Nguyen Trong Duc Anh
+// D16CNPM1
+// sv1@stu.ptit.edu.vn
+// B15DCCN215
+// To Ngoc Hieu
+// D15CNPM3
+// sv2@stu.ptit.edu.vn
+// B15DCKT150
+// Nguyen Ngoc Son
+// D15CQKT02-B
+// sv3@stu.ptit.edu.vn
+// B15DCKT199
+// Nguyen Trong Tung
+// D15CQKT02-B
+// sv4@stu.ptit.edu.vn
+// 1
+// Ke toan
